@@ -47,31 +47,30 @@ class SinatraApp < Sinatra::Base
 	end
 
 	post '/' do
-		# TEXT_FILE_EXTENSIONS = [".txt",".rtf",".doc",".docx"]
-		# PHOTO_FILE_EXTENSIONS = [".gif",".jpeg",".jpg",".png",".bmp"]
 
-		params['myfile'].each do |file,_____|#fix this
-			file = params['myfile'][:tempfile]
-			# extension = File.extname(self.file_data.original_filename) #fix this
+		params['myfile'].each do |file|
+			type = file[:type]
+		  file = file[:tempfile]
+		  puts type
 
-			# if TEXT_FILE_EXTENSIONS.include?(file.extension)
-				@@client.text("#{session[:user_id]}.tumblr.com", 
-					{:body => "#{file.read.gsub!(/\r?\n/,"\n")}"})
+			if (type =~ /text/) == 0
+			 	@@client.text("#{session[:user_id]}.tumblr.com", 
+			 		{:body => "#{file.read.gsub!(/\r?\n/,"\n")}"})
 
-			# elsif PHOTO_FILE_EXTENSIONS.include?(file.extension)
-				@@client.photo("#{session[:user_id]}.tumblr.com", 
-					{:data => "#{file.path}"})
+		 elsif (type =~ /image/) == 0
+			 	@@client.photo("#{session[:user_id]}.tumblr.com", 
+			 		{:data => "#{file.path}"})
 
-			# else
-				# "#{file} didn't/couldn't upload!" 
-			# end
-			return
+			else
+		    "#{file} didn't/couldn't upload!" 
+		 end
+
+
+			
 
 		end
-
-
-
-
+			redirect "http://www.tumblr.com/mega-editor/cool-gf"
+			
 		# For in-browser editor:
     
     # text.each_line do |line|
@@ -79,7 +78,7 @@ class SinatraApp < Sinatra::Base
 		  # @@client.text("#{session[:user_id]}.tumblr.com", {:body => "#{line}"})
 		# end
 
-    end
+    end #ends post
 
 
 
