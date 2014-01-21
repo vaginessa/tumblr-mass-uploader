@@ -8,6 +8,7 @@ GEM
     hashie (2.0.5)
     json (1.8.1)
     mime-types (2.0)
+    multi_json (1.8.2)
     multipart-post (1.2.0)
     oauth (0.4.7)
     omniauth (1.1.4)
@@ -39,6 +40,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  multi_json
   oauth
   omniauth
   omniauth-tumblr
