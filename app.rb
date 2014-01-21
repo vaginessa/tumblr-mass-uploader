@@ -20,7 +20,7 @@ class SinatraApp < Sinatra::Base
 		if session[:authenticated]
 	  	  erb :index
 		else
-			"<a href=' http://fierce-ravine-5098.herokuapp.com/auth/tumblr'>Login with Tumblr</a>"
+			"<a href='http://fierce-ravine-5098.herokuapp.com/auth/tumblr'>Login with Tumblr</a>"
 		end
 	end
 
@@ -69,7 +69,7 @@ class SinatraApp < Sinatra::Base
 			
 
 		end
-			redirect "http://www.tumblr.com/mega-editor/cool-gf"
+			redirect "http://www.tumblr.com/mega-editor/#{session[:user_id]}"
 			
 		# For in-browser editor:
     
