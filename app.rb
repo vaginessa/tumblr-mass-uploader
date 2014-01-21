@@ -108,6 +108,11 @@ class SinatraApp < Sinatra::Base
 	  redirect '/'
 	end
 
+	error 500 do | exception |
+		"Error! #{message}"
+	end
+	
+
 
 end #end of SinatraApp class
 
