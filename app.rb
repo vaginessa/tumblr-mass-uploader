@@ -20,7 +20,7 @@ class SinatraApp < Sinatra::Base
 		if session[:authenticated]
 	  	  erb :index
 		else
-			"<a href='http://localhost:4567/auth/tumblr'>Login with Tumblr</a>"
+			"<a href='http://fierce-ravine-5098.herokuapp.com/auth/tumblr'>Login with Tumblr</a>"
 		end
 	end
 
