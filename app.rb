@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'tumblr_client'
-require 'oauth' #not needed?
+require 'oauth'
 require 'omniauth'
 require 'omniauth-tumblr'
 
@@ -20,13 +20,13 @@ class SinatraApp < Sinatra::Base
 		if session[:authenticated]
 	  	  erb :index
 		else
-			"<a href='http://fierce-ravine-5098.herokuapp.com/auth/tumblr'>Login with Tumblr</a>"
+			"<a href='http://localhost:4567/auth/tumblr'>Login with Tumblr</a>"
 		end
 	end
 
 	get '/auth/:provider/callback' do
 		session[:authenticated] = true
-		# "<pre>#{JSON.pretty_generate(request.env['omniauth.auth'])}</pre>"
+		# puts JSON.pretty_generate(request.env['omniauth.auth'])
 
 		auth = request.env["omniauth.auth"]
 		session[:user_id] = auth["uid"]
@@ -48,37 +48,31 @@ class SinatraApp < Sinatra::Base
 
 	post '/' do
 
-		params['myfile'].each do |file|
-			type = file[:type]
-		  file = file[:tempfile]
-		  puts type
+			params['myfile'].each do |file|
+				type = file[:type]
+			  file = file[:tempfile]
+			  puts type
 
-			if (type =~ /text/) == 0
-			 	@@client.text("#{session[:user_id]}.tumblr.com", 
-			 		{:body => "#{file.read.gsub!(/\r?\n/,"\n")}"})
+					if (type =~ /text/) == 0
+					 	@@client.text("#{params['blog_name']}.tumblr.com", 
+					 		{:body => "#{file.read.gsub!(/\r?\n/,"\n")}"})
 
-		 elsif (type =~ /image/) == 0
-			 	@@client.photo("#{session[:user_id]}.tumblr.com", 
-			 		{:data => "#{file.path}"})
+				 elsif (type =~ /image/) == 0
+					 	@@client.photo("#{params['blog_name']}.tumblr.com", 
+					 		{:data => "#{file.path}"})
 
-			else
-		    "#{file} didn't/couldn't upload!" 
-		 end
+					else
+				    "Photos and video only!" #this doesn't run ?
+				 end
 
 
-			
+				
 
-		end
-			redirect "http://www.tumblr.com/mega-editor/#{session[:user_id]}"
-			
-		# For in-browser editor:
-    
-    # text.each_line do |line|
-			#one post per line! whatttt
-		  # @@client.text("#{session[:user_id]}.tumblr.com", {:body => "#{line}"})
-		# end
+			end
 
-    end #ends post
+			redirect "http://www.tumblr.com/mega-editor/#{params['blog_name']}"
+
+    end
 
 
 
@@ -111,9 +105,7 @@ class SinatraApp < Sinatra::Base
 	error 500 do | exception |
 		"Error! #{message}"
 	end
-	
 
-
-end #end of SinatraApp class
+end
 
 SinatraApp.run!

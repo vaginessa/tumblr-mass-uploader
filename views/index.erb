@@ -6,8 +6,11 @@
 </head>
 
 <body>
-	<h1>File Uploader</h1>
+	<h1>Tumblr Mass File Uploader for Text and Photo</h1>
+	<h2>If you try to upload anything other than text or photos, nothing will happen. They just won't be uploaded.</h2>
 <form method="post" enctype="multipart/form-data">
+	Which blog to upload to?
+	<input type="text" name="blog_name" id="blog_name">.tumblr.com
 	<input type="file" name="myfile[]" id="files" multiple>
 	<output id="list"></output>
 	<input type="submit" value="upload">
