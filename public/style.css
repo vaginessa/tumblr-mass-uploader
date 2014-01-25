@@ -1,0 +1,21 @@
+body {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #ddd;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+button{
+	margin: 20px auto;
+	width: 100%;
+}
+
+h1, p, ul {
+	margin-top: 20px;
+
+}

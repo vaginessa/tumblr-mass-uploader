@@ -1,20 +1,30 @@
-<html>
-<head>
-	<title>Upload</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-  <link rel="stylesheet" src="style.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    
+    <title>Tumblr Multiple File Uploader</title>
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="/style.css">
+  </head>
 
 <body>
-	<h1>Tumblr Mass File Uploader for Text and Photo</h1>
-	<h2>If you try to upload anything other than text or photos, nothing will happen. They just won't be uploaded.</h2>
-<form method="post" enctype="multipart/form-data">
-	Which blog to upload to?
-	<input type="text" name="blog_name" id="blog_name">.tumblr.com
-	<input type="file" name="myfile[]" id="files" multiple>
-	<output id="list"></output>
-	<input type="submit" value="upload">
-</form>
-<script type="text/javascript" src="fileloader.js"></script>
+<div class="container text-center">
+
+	<h1>Tumblr Multiple File Uploader</h1>
+	<p class="lead">If you try to upload anything other than text or photos, nothing will happen. They just won't be uploaded.</p>
+
+	<form method="post" enctype="multipart/form-data">
+		<h2>Which blog to upload to?</h2>
+		<input class="form-signin" type="text" name="blog_name" id="blog_name">.tumblr.com
+		<input class="form-signin" type="file" name="myfile[]" id="files" multiple>
+		<output id="list"></output>
+		<input type="submit" value="upload">
+	</form>
+
+</div>
 </body>
 </html>
