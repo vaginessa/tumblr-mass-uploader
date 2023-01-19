@@ -19,7 +19,7 @@ GEM
       omniauth (~> 1.0)
     omniauth-tumblr (1.1)
       omniauth-oauth (~> 1.0)
-    rack (1.5.2)
+    rack (1.6.13)
     rack-protection (1.5.1)
       rack
     simple_oauth (0.2.0)
